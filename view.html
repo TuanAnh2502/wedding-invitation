@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation Maker</title>
+    <link rel="stylesheet" href="view.css">
+</head>
+<body>
+    <header>
+        <h1>Wedding Invitation Maker</h1>
+    </header>
+    <div class="container">
+        <form id="invitationForm">
+            <div class="form-group">
+                <label for="groomName">Groom's Name</label>
+                <input type="text" id="groomName" placeholder="Enter groom's name" required>
+            </div>
+            <div class="form-group">
+                <label for="brideName">Bride's Name</label>
+                <input type="text" id="brideName" placeholder="Enter bride's name" required>
+            </div>
+            <div class="form-group">
+                <label for="weddingDate">Wedding Date</label>
+                <input type="date" id="weddingDate" required>
+            </div>
+            <div class="form-group">
+                <label for="venue">Venue</label>
+                <textarea id="venue" placeholder="Enter wedding venue" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="theme">Invitation Theme</label>
+                <select id="theme">
+                    <option value="classic">Classic</option>
+                    <option value="modern">Modern</option>
+                    <option value="floral">Floral</option>
+                </select>
+            </div>
+            <button type="button" onclick="generateInvitation()">Generate Invitation</button>
+        </form>
+        <div class="preview" id="invitationPreview">
+            <h3>Invitation Preview</h3>
+            <p>Fill out the form to see your invitation preview here.</p>
+        </div>
+    </div>
+
+    <script>
+        function generateInvitation() {
+            const groomName = document.getElementById('groomName').value;
+            const brideName = document.getElementById('brideName').value;
+            const weddingDate = document.getElementById('weddingDate').value;
+            const venue = document.getElementById('venue').value;
+            const theme = document.getElementById('theme').value;
+
+            const preview = document.getElementById('invitationPreview');
+            preview.innerHTML = `
+                <h3>You're Invited!</h3>
+                <p>We are thrilled to invite you to the wedding of</p>
+                <h2>${groomName} & ${brideName}</h2>
+                <p>on <strong>${new Date(weddingDate).toDateString()}</strong></p>
+                <p>at <strong>${venue}</strong></p>
+                <p>Theme: <strong>${theme.charAt(0).toUpperCase() + theme.slice(1)}</strong></p>
+                <p>We can't wait to celebrate with you!</p>
+            `;
+        }
+    </script>
+</body>
+</html>
